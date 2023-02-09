@@ -1,0 +1,13 @@
+
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ç¬Á¡üÿÿÿÿ
+—
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Çµí‘
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(Ç¬Á¡üÿÿÿÿ
+V	java:S125	"<This block of commented-out lines of code should be removed.(Ñê±Çùÿÿÿÿ
+H
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ
+G
+java:S1128",Remove this unused import 'java.util.Stack'.(ÞÈ†üúÿÿÿÿ
+G
+java:S1068",Remove this unused "testJSON" private field.(Ç¬Á¡üÿÿÿÿ
