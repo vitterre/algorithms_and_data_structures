@@ -9,7 +9,7 @@ public class Main {
 		final String input = "Hello, world!";
 		final Map<Character, Integer> charEntries = new TreeMap<>();
 
-		for (char symbol : input.replaceAll("[^A-Za-z0-9.,!?:-;()]", "").toCharArray()) {
+		for (char symbol : input.toCharArray()) {
 			charEntries.put(symbol, charEntries.getOrDefault(symbol, 0) + 1);
 		}
 
