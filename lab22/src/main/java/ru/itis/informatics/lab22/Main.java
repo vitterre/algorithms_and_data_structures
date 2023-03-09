@@ -1,28 +1,32 @@
 package ru.itis.informatics.lab22;
 
-import java.util.Collections;
-import java.util.Map;
-import java.util.TreeMap;
+import ru.itis.informatics.lab22.analyzer.TripAnalyzer;
+import ru.itis.informatics.lab22.analyzer.filter.TripFilter;
+import ru.itis.informatics.lab22.analyzer.filter.other.DepartureTimeFilter;
+import ru.itis.informatics.lab22.domain.Trip;
+import ru.itis.informatics.lab22.processor.TripProcessor;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class Main {
-	public static void main(String[] args) {
-		final String input = "Hello, world!";
-		final Map<Character, Integer> charEntries = new TreeMap<>();
+	public static void main(String[] args) throws IOException {
+		List<String> lines = Files.readAllLines(Paths.get("lab22/src/main/resources/input.csv"));
 
-		for (char symbol : input.toCharArray()) {
-			charEntries.put(symbol, charEntries.getOrDefault(symbol, 0) + 1);
-		}
+		final TripProcessor tripProcessor = new TripProcessor();
 
-		final int height = Collections.max(charEntries.values());
+		List<Trip> trips = tripProcessor.getTripsFromLines(lines);
 
-		for (int i = height; i > 0; i--) {
-			for (char symbol : charEntries.keySet()) {
-				System.out.print(charEntries.get(symbol) >= i ? '#' : ' ');
+		List<Trip> result = new TripAnalyzer().getFilteredTrips(trips, new TripFilter() {
+			@Override
+			public boolean compare(Trip one, Trip another) {
+				return one.getDetails().getDepartureTime()
+								.equals(another.getDetails().getDepartureTime());
 			}
-			System.out.println();
-		}
+		});
 
-		charEntries.keySet().forEach(System.out::print);
-		System.out.println();
+		result.forEach(System.out::println);
 	}
 }
