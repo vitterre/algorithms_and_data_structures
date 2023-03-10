@@ -1,6 +1,7 @@
 package ru.itis.informatics.lab22;
 
 import ru.itis.informatics.lab22.analyzer.TripAnalyzer;
+import ru.itis.informatics.lab22.analyzer.filter.TripDepartureTimeFilter;
 import ru.itis.informatics.lab22.domain.Trip;
 import ru.itis.informatics.lab22.processor.TripProcessor;
 
@@ -17,11 +18,10 @@ public class Main {
 
 		final List<Trip> trips = tripProcessor.getTripsFromLines(lines);
 
-		final List<Trip> result = new TripAnalyzer().getFilteredTrips(
-						trips,
-						(one, another) -> one.getDetails().getDepartureTime()
-						                  .equals(another.getDetails().getDepartureTime()));
+		final TripAnalyzer tripAnalyzer = new TripAnalyzer();
 
-		result.forEach(System.out::println);
+		final List<Trip> filteredTrips = tripAnalyzer.getFilteredTrips(trips, new TripDepartureTimeFilter());
+
+		filteredTrips.forEach(System.out::println);
 	}
 }
